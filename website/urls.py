@@ -17,10 +17,17 @@ from django.contrib import admin
 from django.urls import path
 
 from pages.views import home_view
-from upload.views import upload_view
+from upload.views import upload
+
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name='home'),
-    path('upload/', upload_view, name='upload'),
+    path('upload/', upload, name='upload'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

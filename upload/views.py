@@ -1,6 +1,11 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-# Create your views here.
+from django.views.generic import TemplateView
+from django.core.files.storage import FileSystemStorage
 
-def upload_view(request, *args, **kwargs):
-    return HttpResponse("<h1>Upload</h1>")
+def upload(request):
+    if request.method == 'POST':
+        uploaded_files = request.FILES.getlist('documents')
+        fs = FileSystemStorage()
+        for ufile in uploaded_files:
+            name = fs.save(ufile.name, ufile)
+    return render(request, 'upload.html')
