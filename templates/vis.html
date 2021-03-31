@@ -1,5 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<img src='../media/test_graph.png' />
+    <h1> Files successfully converted, select visualizations:</h1>
+
+    <form action='sent_analysis' method='GET'>
+        <button type="submit">Sentiment Analysis</button>
+    </form>
+
+    <form action='sent_analysis' method='GET'>
+        <button type="submit">Example</button>
+    </form>
+
+    <form action='sent_analysis' method='GET'>
+        <button type="submit">Example</button>
+    </form>
+
 {% endblock %}

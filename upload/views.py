@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from django.conf import settings
 from django.views.generic import TemplateView
 from django.core.files.storage import FileSystemStorage
-from scripts import test
 import os
+from django.conf import settings
+from scripts import panda_converter
+from scripts import zip_script
 
 
 def upload_view(request):
@@ -17,7 +18,10 @@ def upload_view(request):
                 os.remove(os.path.join(settings.MEDIA_ROOT, ufile.name))
             name = fs.save(ufile.name, ufile)
 
-        file_list = os.listdir(settings.MEDIA_ROOT)
+        file_list = uploaded_files
+        path = settings.MEDIA_ROOT
+        zip_script.unzip_all_files(path)
+        panda_converter.output_csv(path)
         return render(request, 'uploaded.html', {'files': file_list})
 
     # test.woot()
