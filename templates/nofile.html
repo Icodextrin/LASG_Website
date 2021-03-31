@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Upload JSON Files</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="documents" multiple class="form-control-file">
+        <button type="submit">Upload JSON</button>
+    </form>
+
+<h2>No files selected for upload</h2>
+
+{% endblock %}

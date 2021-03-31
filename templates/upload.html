@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Upload JSON Files</h1>
+<h1>Upload Zipped JSON Files</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <input type="file" name="documents" multiple class="form-control-file">
         <button type="submit">Upload JSON</button>
+    </form>
+<br><br><br><br>
+    <form action='delete' method='GET'>
+        <button type="submit">Delete Previously Uploaded Files</button>
     </form>
 <!--
 <h2>Uploaded Files:</h2>
