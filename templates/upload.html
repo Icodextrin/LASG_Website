@@ -3,13 +3,19 @@
 {% block content %}
 <h1>Upload JSON Files</h1>
     <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="file" name="documents" multiple class="form-control-file">
-    <button type="submit">Upload JSON</button>
+        {% csrf_token %}
+        <input type="file" name="documents" multiple class="form-control-file">
+        <button type="submit">Upload JSON</button>
     </form>
+<!--
 <h2>Uploaded Files:</h2>
     {% for file in files%}
     <p>{{file}}</p>
     {% endfor %}
+
+    <form action='vis' method='GET'>
+        <button type="submit">Visualize</button>
+    </form>
+-->
 {% endblock %}
 

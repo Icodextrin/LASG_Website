@@ -11,6 +11,9 @@ def upload_view(request):
         fs = FileSystemStorage()
         for ufile in uploaded_files:
             name = fs.save(ufile.name, ufile)
+        
+        file_list = os.listdir(settings.MEDIA_ROOT)
+        return render(request, 'uploaded.html', {'files':file_list})
+
     test.woot()
-    file_list = os.listdir(settings.MEDIA_ROOT)
-    return render(request, 'upload.html', {'files':file_list})
+    return render(request, 'upload.html')

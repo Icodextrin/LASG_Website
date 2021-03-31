@@ -1,3 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <h1>Sucessfully Uploaded JSON Files</h1>
-<p>{{file_list}}</p>
+<h2>Uploaded Files:</h2>
+    {% for file in files%}
+    <p>{{file}}</p>
+    {% endfor %}
+
+    <form action='vis' method='GET'>
+        <button type="submit">Visualize</button>
+    </form>
+{% endblock %}
 
