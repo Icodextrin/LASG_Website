@@ -20,7 +20,7 @@ from pages.views import home_view
 from upload.views import upload_view
 from vis.views import vis_view
 from sent_analysis.views import sent_analysis_view
-
+from mess_by_year.views import message_by_year_view
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -28,7 +28,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', upload_view, name='upload'),
     path('vis/', vis_view, name='vis'),
-    path('vis/sent_analysis/', sent_analysis_view, name='sent_analysis')
+    path('vis/sent_analysis/', sent_analysis_view, name='sent_analysis'),
+    path('vis/message_by_year/', message_by_year_view, name='message_by_year')
 ]
 
 if settings.DEBUG:

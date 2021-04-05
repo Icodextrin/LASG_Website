@@ -34,7 +34,7 @@ def get_conversation_data(path, conversation, f_type, headers=False):
     if headers:
         convo.to_csv(path + "/csv/" + "comments_and_mentions.csv", mode='a', index=False, header=True)
     else:
-        convo.to_csv("comments_and_mentions.csv", mode='a', index=False, header=False)
+        convo.to_csv(path + "/csv/" + "comments_and_mentions.csv", mode='a', index=False, header=False)
 
 
 def output_csv(path):
