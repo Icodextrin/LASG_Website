@@ -3,6 +3,7 @@ from django.conf import settings
 import os
 # from spacy import displacy
 import numpy as np
+from django.core.files.storage import FileSystemStorage
 from wordcloud import WordCloud, STOPWORDS
 # from spacy.lang.en.examples import sentences
 import nltk
@@ -15,8 +16,8 @@ import matplotlib.pyplot as plt
 import spacy
 
 
-
 def make_graphs():
+    fs = FileSystemStorage()
     nlp = spacy.load("en_core_web_sm")
     path = settings.MEDIA_ROOT
     mentions = pd.read_csv(os.path.join(path, "csv/comments_and_mentions.csv"), encoding="utf8")
@@ -121,6 +122,8 @@ def make_graphs():
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.title("All Conversation Words")
     plt.axis("off")
+    if fs.exists(os.path.join(path, "graphs/sent_analysis_all_words.png")):  # if file exists, overwrite with new file
+        os.remove(os.path.join(settings.MEDIA_ROOT, os.path.join(path, "graphs/sent_analysis_all_words.png")))
     plt.savefig(os.path.join(path, "graphs/sent_analysis_all_words.png"))
 
     # lower max_font_size
@@ -130,6 +133,8 @@ def make_graphs():
     plt.imshow(wordcloud, interpolation="bilinear")
     plt.title("All Conversation Words (Smaller Font)")
     plt.axis("off")
+    if fs.exists(os.path.join(path, "graphs/sent_analysis_all_words_small.png")):
+        os.remove(os.path.join(settings.MEDIA_ROOT, os.path.join(path, "graphs/sent_analysis_all_words_small.png")))
     plt.savefig(os.path.join(path, "graphs/sent_analysis_all_words_small.png"))
 
     wordcloud = WordCloud(background_color="white", max_words=50).generate(
@@ -138,6 +143,8 @@ def make_graphs():
     plt.imshow(wordcloud, interpolation="bilinear")
     plt.title("Pronouns Used")
     plt.axis("off")
+    if fs.exists(os.path.join(path, "graphs/sent_analysis_pronouns.png")):
+        os.remove(os.path.join(settings.MEDIA_ROOT, os.path.join(path, "graphs/sent_analysis_pronouns.png")))
     plt.savefig(os.path.join(path, "graphs/sent_analysis_pronouns.png"))
 
     clean_neg_text = []
@@ -155,13 +162,15 @@ def make_graphs():
                 clean_neg_text.append(clean)
 
     neg_text = pd.DataFrame(clean_neg_text)
-    neg_text.to_csv('neg_text_nlp.csv', encoding='utf8')
+    neg_text.to_csv(os.path.join(path, 'csv/neg_text_nlp.csv'), encoding='utf8')
     wordcloud = WordCloud(background_color="white", stopwords=stopwords, max_words=50).generate(
         neg_text['text'].to_string())
     plt.figure()
     plt.imshow(wordcloud, interpolation="bilinear")
     plt.title("Negative Words Used")
     plt.axis("off")
+    if fs.exists(os.path.join(path, "graphs/sent_analysis_neg.png")):
+        os.remove(os.path.join(settings.MEDIA_ROOT, os.path.join(path, "graphs/sent_analysis_neg.png")))
     plt.savefig(os.path.join(path, "graphs/sent_analysis_neg.png"))
 
     clean_pos_text = []
@@ -179,12 +188,14 @@ def make_graphs():
                 clean_pos_text.append(clean)
 
     pos_text = pd.DataFrame(clean_pos_text)
-    pos_text.to_csv('pos_text_nlp.csv', encoding='utf8')
+    pos_text.to_csv(os.path.join(path, 'csv/pos_text_nlp.csv'), encoding='utf8')
     wordcloud = WordCloud(background_color="white", stopwords=stopwords, max_words=50).generate(
         pos_text['text'].to_string())
     plt.figure()
     plt.imshow(wordcloud, interpolation="bilinear")
     plt.title("Positive Words Used")
     plt.axis("off")
+    if fs.exists(os.path.join(path, "graphs/sent_analysis_pos.png")):
+        os.remove(os.path.join(settings.MEDIA_ROOT, os.path.join(path, "graphs/sent_analysis_pos.png")))
     plt.savefig(os.path.join(path, "graphs/sent_analysis_pos.png"))
 

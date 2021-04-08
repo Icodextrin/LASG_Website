@@ -4,15 +4,25 @@
     <h1> Files successfully converted, select visualizations:</h1>
 
     <form action='sent_analysis' method='GET'>
-        <button type="submit">Sentiment Analysis</button>
+        <button onclick="display()" type="submit">Sentiment Analysis</button>
     </form>
 
     <form action='message_by_year' method='GET'>
-        <button type="submit">Messages by Year</button>
+        <button onclick="display()" type="submit">Messages by Year</button>
     </form>
 
+    <!--
     <form action='sent_analysis' method='GET'>
-        <button type="submit">Sankey Chart</button>
+        <button onclick="display()" type="submit">Sankey Chart</button>
     </form>
+    -->
+
+    <img id='loading' src="/media/loading.webp" alt="loading" style="display: none">
+
+    <script>
+        function display(){
+            document.getElementById('loading').style.display='block';
+        }
+    </script>
 
 {% endblock %}

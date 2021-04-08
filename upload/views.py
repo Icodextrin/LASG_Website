@@ -26,3 +26,8 @@ def upload_view(request):
 
     # test.woot()
     return render(request, 'upload.html')
+
+
+def loading_view(request):
+    return render(request, "loading.html")
+

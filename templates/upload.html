@@ -2,24 +2,26 @@
 
 {% block content %}
 <h1>Upload Zipped JSON Files</h1>
+    <p>This may take several minutes, do not refresh the page.</p>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <input type="file" name="documents" multiple class="form-control-file">
-        <button type="submit">Upload JSON</button>
+        <button onclick="display()" type="submit">Upload JSON</button>
     </form>
 <br><br><br><br>
+    <!--
     <form action='delete' method='GET'>
         <button type="submit">Delete Previously Uploaded Files</button>
     </form>
-<!--
-<h2>Uploaded Files:</h2>
-    {% for file in files%}
-    <p>{{file}}</p>
-    {% endfor %}
+    -->
 
-    <form action='vis' method='GET'>
-        <button type="submit">Visualize</button>
-    </form>
--->
+    <img id='loading' src="/media/loading.webp" alt="loading" style="display: none">
+
+    <script>
+        function display(){
+            document.getElementById('loading').style.display='block';
+        }
+    </script>
+
+
 {% endblock %}
-
