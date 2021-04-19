@@ -21,6 +21,8 @@ from upload.views import upload_view
 from vis.views import vis_view
 from sent_analysis.views import sent_analysis_view
 from mess_by_year.views import message_by_year_view
+from mess_by_proj.views import message_by_proj_view
+from sankey.views import sankey_view
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -29,7 +31,9 @@ urlpatterns = [
     path('', upload_view, name='upload'),
     path('vis/', vis_view, name='vis'),
     path('vis/sent_analysis/', sent_analysis_view, name='sent_analysis'),
-    path('vis/message_by_year/', message_by_year_view, name='message_by_year')
+    path('vis/message_by_year/', message_by_year_view, name='message_by_year'),
+    path('vis/message_by_proj/', message_by_proj_view, name='message_by_proj'),
+    path('vis/sankey/', sankey_view, name='sankey')
 ]
 
 if settings.DEBUG:
