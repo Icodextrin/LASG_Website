@@ -6,16 +6,33 @@
     <form action='sent_analysis' method='GET'>
         <button onclick="display()" type="submit">Sentiment Analysis</button>
     </form>
-
+    <div>
+        Create word clouds of the most used negative and postive words. <br>
+        Also generate word clouds of the most used words and pronouns.
+    </div>
+    <br>
     <form action='message_by_year' method='GET'>
         <button onclick="display()" type="submit">Messages by Year</button>
     </form>
-
-    <!--
-    <form action='sent_analysis' method='GET'>
+    <div>
+        Bar chart of messages by year.
+    </div>
+    <br>
+    <form action='message_by_proj' method='GET'>
+        <button onclick="display()" type="submit">Messages by Project</button>
+    </form>
+    <div>
+        Message by year for each project.
+    </div>
+    <br>
+    <form action='sankey' method='GET'>
         <button onclick="display()" type="submit">Sankey Chart</button>
     </form>
-    -->
+    <div>
+        Sankey Chart of project connections between users.
+    </div>
+    <br>
+
 
     <img id='loading' src="/media/loading.webp" alt="loading" style="display: none">
 

@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Messages by Projects by Year</h1>
+    {% for file in files %}
+        <img src="/media/graphs/mess_by_proj/{{ file }}" alt="messages_by_year">
+    {% endfor %}
+{% endblock %}

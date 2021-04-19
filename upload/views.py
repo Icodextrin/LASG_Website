@@ -24,7 +24,6 @@ def upload_view(request):
         panda_converter.output_csv(path)
         return render(request, 'uploaded.html', {'files': file_list})
 
-    # test.woot()
     return render(request, 'upload.html')
 
 
