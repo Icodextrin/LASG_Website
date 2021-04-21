@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import holoviews as hv
 import plotly.graph_objects as go
-import sys, glob, json,csv
+import sys, glob, json,csv, os
 from website import settings
 
 
@@ -10,7 +10,7 @@ def sankey_graph():
     path = settings.MEDIA_ROOT
     hv.extension('bokeh')
     # list all of the json files of that type
-    file_arr = glob.glob("*_interactions.csv")
+    file_arr = glob.glob(path + "/csv/proj_interactions/" + "*_interactions.csv")
     # loop through all of the files
     for f in file_arr:
         df = pd.read_csv(f)
@@ -46,10 +46,8 @@ def sankey_graph():
             value = value_1
         ))])
         fig.update_layout(title_text="", font_size=10)
-        file_name = f.split("/")[-1].split(".")[0]
+        #file_name = f.split("/")[-1].split(".")[0]
+        file_name = os.path.split(f.split(".")[0])
+        print(file_name)
         #fig.write_html(file_name+".html")
-        fig.write_image(path + '/graphs/sankey/' + file_name + ".png")
-
-        #fig.show()
-
-
+        fig.write_image(path + '/graphs/sankey/' + file_name[1] + ".png")
