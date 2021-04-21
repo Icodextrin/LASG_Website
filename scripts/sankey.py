@@ -9,7 +9,7 @@ def sankey_graph():
     path = settings.MEDIA_ROOT
 
     hv.extension('bokeh')
-    file_path = path + '/csv/' + "15541798_interactions.csv"
+    file_path = path + '/csv/proj_interactions/' + "15541798_interactions.csv"
     df = pd.read_csv(file_path, index_col=0)
     #df = pd.read_csv(file_path)
 
