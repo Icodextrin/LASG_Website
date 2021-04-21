@@ -70,12 +70,14 @@ def count_interactions():
     path = settings.MEDIA_ROOT
     projects_df = pd.read_csv(path + '/csv/' + 'projects.csv', encoding='utf8')
     comments_and_mentions_df = pd.read_csv(path + '/csv/' + 'comments_and_mentions.csv', encoding='utf8')
+    #print(projects_df)
+    #print(comments_and_mentions_df)
     for project in projects_df['id']:
         interaction = comments_and_mentions_df.where(
             comments_and_mentions_df['project.id'] == project).dropna().groupby(
             ['commentor.id', 'commentor.name', 'mention.id', 'mention.name']).size().reset_index().rename(
             columns={0: 'count'}).sort_values(by=['count'], ascending=False)
-        interaction.to_csv(path + '/csv/' + str(project) + "_interactions.csv", index=False)
+        interaction.to_csv(path + '/csv/proj_interactions/' + str(project) + "_interactions.csv", index=False)
 
 
 def get_conversation_data(path, conversation, f_type, headers=False):
@@ -150,4 +152,3 @@ def output_csv(path):
 
     merge_people(path)
     update_people_ids(path)
-    count_interactions()
