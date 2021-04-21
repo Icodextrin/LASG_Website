@@ -20,7 +20,7 @@ def make_graphs():
     fs = FileSystemStorage()
     nlp = spacy.load("en_core_web_sm")
     path = settings.MEDIA_ROOT
-    mentions = pd.read_csv(os.path.join(path, "csv/comments_and_mentions.csv"), encoding="utf8")
+    mentions = pd.read_csv((path + "/csv/comments_and_mentions.csv"), encoding="utf8")
     mentions.head()
     text = mentions['content.text'].unique()
     text_string = np.array2string(text)
@@ -124,7 +124,7 @@ def make_graphs():
     plt.axis("off")
     if fs.exists(os.path.join(path, "graphs/sent_analysis_all_words.png")):  # if file exists, overwrite with new file
         os.remove(os.path.join(settings.MEDIA_ROOT, os.path.join(path, "graphs/sent_analysis_all_words.png")))
-    plt.savefig(os.path.join(path, "graphs/sent_analysis_all_words.png"))
+    plt.savefig(path + "/graphs/sent_analysis_all_words.png")
 
     # lower max_font_size
     wordcloud = WordCloud(background_color="white", max_font_size=40, stopwords=stopwords, max_words=50).generate(
