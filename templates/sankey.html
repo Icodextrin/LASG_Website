@@ -2,5 +2,7 @@
 
 {% block content %}
     <h1>Sankey Graph</h1>
-    <img src="/media/graphs/sankey.png" alt="messages_by_year">
+    {% for file in files %}
+        <img src="/media/graphs/sankey/{{ file }}" alt="sankey">
+    {% endfor %}
 {% endblock %}
