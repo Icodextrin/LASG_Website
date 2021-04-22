@@ -48,6 +48,5 @@ def sankey_graph():
         fig.update_layout(title_text="", font_size=10)
         #file_name = f.split("/")[-1].split(".")[0]
         file_name = os.path.split(f.split(".")[0])
-        print(file_name)
         #fig.write_html(file_name+".html")
         fig.write_image(path + '/graphs/sankey/' + file_name[1] + ".png")
