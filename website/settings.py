@@ -8,8 +8,12 @@ https://docs.djangoproject.com/en/2.0/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
-"""
 
+For future maintainers: The person who created this website had never built a website before this project.
+This website was made in three weeks.
+If you look at something and question why something was done the way it was when you know a better way, you're
+probably right. None of this is best practice, just what would make the website work.
+"""
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
