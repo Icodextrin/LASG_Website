@@ -1,2 +1,2 @@
 git pull
-pip install -r requirements.txt
+pip install -r requirements_mac_linux.txt
